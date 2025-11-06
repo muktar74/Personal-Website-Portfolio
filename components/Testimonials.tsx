@@ -8,25 +8,31 @@ const testimonialsData: Testimonial[] = [
     quote: "Working with Muktar was an absolute pleasure. His expertise in frontend development is exceptional, and he delivered a product that exceeded all our expectations. Highly recommended!",
     name: 'Jane Smith',
     role: 'Project Manager at Innovate Inc.',
-    imageUrl: 'https://picsum.photos/seed/person1/100/100',
+    imageUrl: 'https://picsum.photos/seed/testimonial1/100/100',
   },
   {
     quote: "Muktar is a highly skilled developer and a great team player. His ability to tackle complex problems with elegant solutions made a huge impact on our project's success.",
     name: 'Mike Johnson',
     role: 'Lead Designer at Creative Solutions',
-    imageUrl: 'https://picsum.photos/seed/person2/100/100',
+    imageUrl: 'https://picsum.photos/seed/testimonial2/100/100',
   },
   {
     quote: "I was consistently impressed by Muktar's dedication and technical proficiency. He is a reliable and proactive engineer who is always willing to go the extra mile.",
     name: 'Sarah Chen',
     role: 'CTO at Tech Starters LLC',
-    imageUrl: 'https://picsum.photos/seed/person3/100/100',
+    imageUrl: 'https://picsum.photos/seed/testimonial3/100/100',
   },
 ];
 
 const TestimonialCard: React.FC<{ testimonial: Testimonial }> = ({ testimonial }) => (
   <div className="bg-zinc-100 dark:bg-zinc-800 p-8 rounded-lg shadow-lg flex flex-col items-center text-center">
-    <img src={testimonial.imageUrl} alt={testimonial.name} className="w-24 h-24 rounded-full mb-4 border-4 border-white dark:border-zinc-900" />
+    <img 
+      src={testimonial.imageUrl} 
+      alt={testimonial.name} 
+      className="w-24 h-24 rounded-full mb-4 border-4 border-white dark:border-zinc-900" 
+      loading="lazy"
+      decoding="async"
+    />
     <blockquote className="text-zinc-600 dark:text-zinc-300 italic mb-4 text-lg">
       "{testimonial.quote}"
     </blockquote>

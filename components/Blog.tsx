@@ -1,3 +1,5 @@
+
+
 import React from 'react';
 import type { BlogPost } from '../types';
 import { ExternalLinkIcon } from './Icons';
@@ -9,37 +11,68 @@ const blogData: BlogPost[] = [
     excerpt: 'A deep dive into the most commonly used React Hooks, with practical examples to help you write cleaner and more efficient component logic.',
     imageUrl: 'https://picsum.photos/seed/blog1/600/400',
     date: 'October 26, 2023',
-    url: '#',
+    url: 'https://dev.to/user/react-hooks-article', // Example real link
   },
   {
     title: 'The Art of TypeScript: Advanced Patterns',
     excerpt: 'Explore advanced TypeScript patterns like conditional types, mapped types, and decorators to build robust and scalable applications.',
     imageUrl: 'https://picsum.photos/seed/blog2/600/400',
     date: 'September 15, 2023',
-    url: '#',
+    url: '#!', // This will be treated as a placeholder
   },
   {
     title: 'Why Tailwind CSS is a Game Changer for UI Development',
     excerpt: 'An opinionated look at the utility-first CSS framework and how it can dramatically speed up your development workflow.',
     imageUrl: 'https://picsum.photos/seed/blog3/600/400',
     date: 'August 02, 2023',
-    url: '#',
+    url: '#!', // This will be treated as a placeholder
   },
 ];
 
-const BlogCard: React.FC<{ post: BlogPost }> = ({ post }) => (
-  <a href={post.url} target="_blank" rel="noopener noreferrer" className="block bg-zinc-100 dark:bg-zinc-800 rounded-lg shadow-lg overflow-hidden transition-all duration-300 hover:shadow-teal-500/20 dark:hover:shadow-teal-400/10 hover:-translate-y-2 group">
-    <img src={post.imageUrl} alt={post.title} className="w-full h-48 object-cover" />
-    <div className="p-6">
-      <p className="text-sm text-zinc-500 dark:text-zinc-400 font-mono mb-1">{post.date}</p>
-      <h3 className="text-xl font-bold text-zinc-900 dark:text-white mb-2 group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">{post.title}</h3>
-      <p className="text-zinc-600 dark:text-zinc-300 mb-4">{post.excerpt}</p>
-      <div className="text-teal-600 dark:text-teal-400 font-semibold flex items-center">
-        Read More <ExternalLinkIcon className="w-5 h-5 ml-2" />
+const BlogCard: React.FC<{ post: BlogPost }> = ({ post }) => {
+  const isClickable = post.url && post.url !== '#!';
+
+  // FIX: Converted CardContent from a JSX element variable to a functional component.
+  // This resolves the error where it was being incorrectly used as a component.
+  const CardContent = () => (
+    <>
+      <img 
+        src={post.imageUrl} 
+        alt={post.title} 
+        className="w-full h-48 object-cover" 
+        loading="lazy"
+        decoding="async"
+      />
+      <div className="p-6">
+        <p className="text-sm text-zinc-500 dark:text-zinc-400 font-mono mb-1">{post.date}</p>
+        <h3 className={`text-xl font-bold text-zinc-900 dark:text-white mb-2 ${isClickable ? 'group-hover:text-teal-600 dark:group-hover:text-teal-400' : ''} transition-colors`}>{post.title}</h3>
+        <p className="text-zinc-600 dark:text-zinc-300 mb-4">{post.excerpt}</p>
+        {isClickable && (
+          <div className="text-teal-600 dark:text-teal-400 font-semibold flex items-center">
+            Read More <ExternalLinkIcon className="w-5 h-5 ml-2" />
+          </div>
+        )}
       </div>
+    </>
+  );
+
+  const cardClasses = "block bg-zinc-100 dark:bg-zinc-800 rounded-lg shadow-lg overflow-hidden transition-all duration-300 group";
+
+  if (isClickable) {
+    return (
+      <a href={post.url} target="_blank" rel="noopener noreferrer" className={`${cardClasses} hover:shadow-teal-500/20 dark:hover:shadow-teal-400/10 hover:-translate-y-2`}>
+        <CardContent />
+      </a>
+    );
+  }
+
+  return (
+    <div className={cardClasses}>
+      <CardContent />
     </div>
-  </a>
-);
+  );
+};
+
 
 const Blog: React.FC = () => {
   return (

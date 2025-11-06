@@ -12,6 +12,7 @@ type FormErrors = {
   name?: string;
   email?: string;
   message?: string;
+  submit?: string; // For general submission errors
 };
 
 
@@ -80,19 +81,43 @@ const Contact: React.FC = () => {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const validationErrors = validate();
     setErrors(validationErrors);
+    setSubmitSuccess(false);
 
     if (Object.keys(validationErrors).length === 0) {
       setIsSubmitting(true);
-      // Simulate form submission
-      setTimeout(() => {
+      
+      const form = e.target as HTMLFormElement;
+      const data = new FormData(form);
+
+      try {
+        const response = await fetch(form.action, {
+          method: form.method,
+          body: data,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+
+        if (response.ok) {
+          setSubmitSuccess(true);
+          setFormData({ name: '', email: '', message: '' });
+        } else {
+          const responseData = await response.json();
+          if (responseData.errors) {
+            setErrors({ submit: responseData.errors.map((error: any) => error.message).join(', ') });
+          } else {
+            setErrors({ submit: "Oops! Something went wrong on the server. Please try again." });
+          }
+        }
+      } catch (error) {
+        setErrors({ submit: "Could not send message. Please check your network connection." });
+      } finally {
         setIsSubmitting(false);
-        setSubmitSuccess(true);
-        setFormData({ name: '', email: '', message: '' });
-      }, 1500);
+      }
     }
   };
 
@@ -123,7 +148,15 @@ const Contact: React.FC = () => {
                     <span className="block sm:inline"> Your message has been sent successfully. I'll get back to you soon.</span>
                 </div>
                 ) : (
-                <form onSubmit={handleSubmit} noValidate className="space-y-6">
+                <form 
+                  onSubmit={handleSubmit} 
+                  // TODO: Create a form on formspree.io and replace the action URL below.
+                  // Your form should be configured to send emails to muktarabdella6@gmail.com
+                  action="https://formspree.io/f/YOUR_FORM_ID_HERE"
+                  method="POST"
+                  noValidate 
+                  className="space-y-6"
+                >
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                         <label htmlFor="name" className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-1">Full Name</label>
@@ -191,6 +224,7 @@ const Contact: React.FC = () => {
                     >
                         {isSubmitting ? 'Sending...' : 'Send Message'}
                     </button>
+                    {errors.submit && <p id="submit-error" className="text-red-500 text-sm mt-4">{errors.submit}</p>}
                     </div>
                 </form>
                 )}

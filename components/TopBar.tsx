@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { MapPinIcon, EmailIcon, PhoneIcon, GitHubIcon, LinkedInIcon, TwitterIcon } from './Icons';
 
@@ -25,13 +26,13 @@ const TopBar: React.FC = () => {
 
         {/* Social Links */}
         <div className="flex items-center space-x-4">
-          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="hover:text-teal-600 dark:hover:text-teal-400 transition-colors">
+          <a href="https://github.com/muktarabdella" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="hover:text-teal-600 dark:hover:text-teal-400 transition-colors">
             <GitHubIcon className="w-5 h-5" />
           </a>
-          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="hover:text-teal-600 dark:hover:text-teal-400 transition-colors">
+          <a href="https://linkedin.com/in/muktarabdella" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="hover:text-teal-600 dark:hover:text-teal-400 transition-colors">
             <LinkedInIcon className="w-5 h-5" />
           </a>
-          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Twitter" className="hover:text-teal-600 dark:hover:text-teal-400 transition-colors">
+          <a href="https://x.com/muktarabdella" target="_blank" rel="noopener noreferrer" aria-label="Twitter" className="hover:text-teal-600 dark:hover:text-teal-400 transition-colors">
             <TwitterIcon className="w-5 h-5" />
           </a>
         </div>

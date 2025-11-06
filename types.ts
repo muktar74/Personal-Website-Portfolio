@@ -8,8 +8,10 @@ export interface Skill {
 export interface Project {
   title: string;
   description: string;
+  longDescription: string;
   tags: string[];
   imageUrl: string;
+  screenshots?: string[];
   liveUrl?: string;
   sourceUrl?: string;
 }
