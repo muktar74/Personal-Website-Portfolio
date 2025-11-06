@@ -8,19 +8,19 @@ const testimonialsData: Testimonial[] = [
     quote: "Working with Muktar was an absolute pleasure. His expertise in frontend development is exceptional, and he delivered a product that exceeded all our expectations. Highly recommended!",
     name: 'Jane Smith',
     role: 'Project Manager at Innovate Inc.',
-    imageUrl: 'https://picsum.photos/seed/testimonial1/100/100',
+    imageUrl: 'https://placehold.co/100x100/737373/ffffff?text=JS',
   },
   {
     quote: "Muktar is a highly skilled developer and a great team player. His ability to tackle complex problems with elegant solutions made a huge impact on our project's success.",
     name: 'Mike Johnson',
     role: 'Lead Designer at Creative Solutions',
-    imageUrl: 'https://picsum.photos/seed/testimonial2/100/100',
+    imageUrl: 'https://placehold.co/100x100/737373/ffffff?text=MJ',
   },
   {
     quote: "I was consistently impressed by Muktar's dedication and technical proficiency. He is a reliable and proactive engineer who is always willing to go the extra mile.",
     name: 'Sarah Chen',
     role: 'CTO at Tech Starters LLC',
-    imageUrl: 'https://picsum.photos/seed/testimonial3/100/100',
+    imageUrl: 'https://placehold.co/100x100/737373/ffffff?text=SC',
   },
 ];
 

@@ -21,7 +21,7 @@ const About: React.FC = () => {
           <div className="relative w-64 h-64 md:w-80 md:h-80 group">
             <div className="absolute inset-0 bg-teal-500 dark:bg-teal-600 rounded-lg transform rotate-3 group-hover:rotate-0 transition-transform duration-300"></div>
             <img 
-              src="https://picsum.photos/seed/muktar-profile/400/400" 
+              src="https://placehold.co/400x400/0d9488/ffffff?text=Muktar+Abdella" 
               alt="Muktar Abdella" 
               className="relative w-full h-full object-cover rounded-lg shadow-xl"
               loading="lazy"

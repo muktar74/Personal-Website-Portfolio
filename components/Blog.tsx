@@ -9,21 +9,21 @@ const blogData: BlogPost[] = [
   {
     title: 'Mastering React Hooks in 10 Minutes',
     excerpt: 'A deep dive into the most commonly used React Hooks, with practical examples to help you write cleaner and more efficient component logic.',
-    imageUrl: 'https://picsum.photos/seed/blog1/600/400',
+    imageUrl: 'https://placehold.co/600x400/0d9488/ffffff?text=React+Hooks',
     date: 'October 26, 2023',
     url: 'https://dev.to/user/react-hooks-article', // Example real link
   },
   {
     title: 'The Art of TypeScript: Advanced Patterns',
     excerpt: 'Explore advanced TypeScript patterns like conditional types, mapped types, and decorators to build robust and scalable applications.',
-    imageUrl: 'https://picsum.photos/seed/blog2/600/400',
+    imageUrl: 'https://placehold.co/600x400/0d9488/ffffff?text=TypeScript',
     date: 'September 15, 2023',
     url: '#!', // This will be treated as a placeholder
   },
   {
     title: 'Why Tailwind CSS is a Game Changer for UI Development',
     excerpt: 'An opinionated look at the utility-first CSS framework and how it can dramatically speed up your development workflow.',
-    imageUrl: 'https://picsum.photos/seed/blog3/600/400',
+    imageUrl: 'https://placehold.co/600x400/0d9488/ffffff?text=Tailwind+CSS',
     date: 'August 02, 2023',
     url: '#!', // This will be treated as a placeholder
   },
@@ -32,14 +32,12 @@ const blogData: BlogPost[] = [
 const BlogCard: React.FC<{ post: BlogPost }> = ({ post }) => {
   const isClickable = post.url && post.url !== '#!';
 
-  // FIX: Converted CardContent from a JSX element variable to a functional component.
-  // This resolves the error where it was being incorrectly used as a component.
-  const CardContent = () => (
+  const cardContent = (
     <>
-      <img 
-        src={post.imageUrl} 
-        alt={post.title} 
-        className="w-full h-48 object-cover" 
+      <img
+        src={post.imageUrl}
+        alt={post.title}
+        className="w-full h-48 object-cover"
         loading="lazy"
         decoding="async"
       />
@@ -61,14 +59,14 @@ const BlogCard: React.FC<{ post: BlogPost }> = ({ post }) => {
   if (isClickable) {
     return (
       <a href={post.url} target="_blank" rel="noopener noreferrer" className={`${cardClasses} hover:shadow-teal-500/20 dark:hover:shadow-teal-400/10 hover:-translate-y-2`}>
-        <CardContent />
+        {cardContent}
       </a>
     );
   }
 
   return (
     <div className={cardClasses}>
-      <CardContent />
+      {cardContent}
     </div>
   );
 };

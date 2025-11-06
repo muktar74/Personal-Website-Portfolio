@@ -149,10 +149,8 @@ const Contact: React.FC = () => {
                 </div>
                 ) : (
                 <form 
-                  onSubmit={handleSubmit} 
-                  // TODO: Create a form on formspree.io and replace the action URL below.
-                  // Your form should be configured to send emails to muktarabdella6@gmail.com
-                  action="https://formspree.io/f/YOUR_FORM_ID_HERE"
+                  onSubmit={handleSubmit}
+                  action="https://formspree.io/f/mvojozjw"
                   method="POST"
                   noValidate 
                   className="space-y-6"
